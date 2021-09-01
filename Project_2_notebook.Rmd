@@ -17,6 +17,9 @@ SCC <- readRDS("Source_Classification_Code.rds")
 # NEI year stored as int. We'll set to factors
 NEI$year <- as.factor(NEI$year)
 
+# NEI type stored chr. We'll set to factors
+NEI$type <- as.factor(NEI$type)
+
 ```
 # Question 1
 
@@ -66,6 +69,24 @@ barplot(bc_m$Total, names.arg = bc_m$year,
 
 Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999 - 2008 for Baltimore City? Which have seen increases in emissions from 1999 - 2008? Use the ggplot2 plotting system to make a plot answer this question.
 ```{r}
+# Plot3.R
+
+# Baltimore City, Maryland: fips = 24510
+bc_m_type <- NEI %>%
+  filter(fips == "24510") %>%
+  group_by(type, year) %>%
+  summarise(Total = sum(Emissions, na.rm = TRUE))
+
+# png device for plotting
+png(filename = "plot3.png", width = 480, height = 480)
+
+ggplot(bc_m_type, aes(x = year, y = Total, fill = type)) + 
+  geom_col(position = "dodge", colour = "black") +
+  ylab("Total (tons)") + xlab(NULL) +
+  ggtitle("Total PM2.5 Emissions\n in Baltimore City, Maryland")
+
+
+dev.off() # close device
 ```
 
 # Question 4
