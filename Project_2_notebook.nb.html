@@ -219,9 +219,40 @@ pre code {
 <h1>Load packages</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGdncGxvdDIpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)
-library(ggplot2)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxuLS0gQXR0YWNoaW5nIHBhY2thZ2VzIC0tLS0tLS0gdGlkeXZlcnNlIDEuMy4xIC0tXG52IGdncGxvdDIgMy4zLjUgICAgIHYgcHVycnIgICAwLjMuNFxudiB0aWJibGUgIDMuMS4zICAgICB2IGRwbHlyICAgMS4wLjdcbnYgdGlkeXIgICAxLjEuMyAgICAgdiBzdHJpbmdyIDEuNC4wXG52IHJlYWRyICAgMi4wLjAgICAgIHYgZm9yY2F0cyAwLjUuMVxuLS0gQ29uZmxpY3RzIC0tLS0tLS0tLS0gdGlkeXZlcnNlX2NvbmZsaWN0cygpIC0tXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= -->
+<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+-- Attaching packages ------- tidyverse 1.3.1 --
+v ggplot2 3.3.5     v purrr   0.3.4
+v tibble  3.1.3     v dplyr   1.0.7
+v tidyr   1.1.3     v stringr 1.4.0
+v readr   2.0.0     v forcats 0.5.1
+-- Conflicts ---------- tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuYGBgIn0= -->
+<pre class="r"><code>library(ggplot2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="read-in-data-takes-time" class="section level1">
+<h1>Read in Data (takes time)</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkVJIDwtIHJlYWRSRFMoXCJzdW1tYXJ5U0NDX1BNMjUucmRzXCIpXG5TQ0MgPC0gcmVhZFJEUyhcIlNvdXJjZV9DbGFzc2lmaWNhdGlvbl9Db2RlLnJkc1wiKVxuXG4jIE5FSSB5ZWFyIHN0b3JlZCBhcyBpbnQuIFdlJ2xsIHNldCB0byBmYWN0b3JzXG5ORUkkeWVhciA8LSBhcy5mYWN0b3IoTkVJJHllYXIpXG5cbmBgYCJ9 -->
+<pre class="r"><code>NEI &lt;- readRDS(&quot;summarySCC_PM25.rds&quot;)
+SCC &lt;- readRDS(&quot;Source_Classification_Code.rds&quot;)
+
+# NEI year stored as int. We&#39;ll set to factors
+NEI$year &lt;- as.factor(NEI$year)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -231,6 +262,25 @@ library(ggplot2)</code></pre>
 <p>Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Using the base plotting system, make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQbG90MS5SXG50b3RhbHMgPC0gTkVJICU+JVxuICBncm91cF9ieSh5ZWFyKSAlPiVcbiAgc3VtbWFyaXNlKFRvdGFsID0gc3VtKEVtaXNzaW9ucywgbmEucm09VFJVRSkvMWU2KVxuXG5wbmcoZmlsZW5hbWUgPSBcInBsb3QxLnBuZ1wiLCB3aWR0aCA9IDQ4MCwgaGVpZ2h0ID0gNDgwKSAjIHBuZyBkZXZpY2UgZm9yIHBsb3R0aW5nXG5cbmJhcnBsb3QodG90YWxzJFRvdGFsLCBuYW1lcy5hcmcgPSB0b3RhbHMkeWVhcixcbiAgICAgICAgY29sID0gXCIjZmE5ZmI1XCIsXG4gICAgICAgIG1haW4gPSBcIlRvdGFsIFBNMi41IEVtaXNzaW9uc1xcbiBpbiBVbml0ZWQgU3RhdGVzXCIsXG4gICAgICAgIHlsYWIgPSBcIkFtb3VudCAoMTBeNiB0b25zKVwiKVxuXG5kZXYub2ZmKCkgIyBjbG9zZSBkZXZpY2VcbmBgYCJ9 -->
+<pre class="r"><code># Plot1.R
+totals &lt;- NEI %&gt;%
+  group_by(year) %&gt;%
+  summarise(Total = sum(Emissions, na.rm=TRUE)/1e6)
+
+png(filename = &quot;plot1.png&quot;, width = 480, height = 480) # png device for plotting
+
+barplot(totals$Total, names.arg = totals$year,
+        col = &quot;#fa9fb5&quot;,
+        main = &quot;Total PM2.5 Emissions\n in United States&quot;,
+        ylab = &quot;Amount (10^6 tons)&quot;)
+
+dev.off() # close device</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUlN0dWRpb0dEIFxuICAgICAgICAyIFxuIn0= -->
+<pre><code>RStudioGD 
+        2 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -274,7 +324,7 @@ library(ggplot2)</code></pre>
 <!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb2plY3QgMiBub3RlYm9vayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiMgTG9hZCBwYWNrYWdlcw0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2dwbG90MikNCmBgYA0KDQojIFF1ZXN0aW9uIDENCg0KSGF2ZSB0b3RhbCBlbWlzc2lvbnMgZnJvbSBQTTIuNSBkZWNyZWFzZWQgaW4gdGhlIFVuaXRlZCBTdGF0ZXMgZnJvbSAxOTk5IHRvIDIwMDg/IFVzaW5nIHRoZSBiYXNlIHBsb3R0aW5nIHN5c3RlbSwgbWFrZSBhIHBsb3Qgc2hvd2luZyB0aGUgdG90YWwgUE0yLjUgZW1pc3Npb24gZnJvbSBhbGwgc291cmNlcyBmb3IgZWFjaCBvZiB0aGUgeWVhcnMgMTk5OSwgMjAwMiwgMjAwNSwgYW5kIDIwMDguDQpgYGB7cn0NCmBgYA0KDQojIFF1ZXN0aW9uIDINCg0KSGF2ZSB0b3RhbCBlbWlzc2lvbnMgZnJvbSBQTTIuNSBkZWNyZWFzZWQgaW4gdGhlIEJhbHRpbW9yZSBDaXR5LCBNYXJ5bGFuZCBmaXBzID09ICIyNDUxMCIgZnJvbSAxOTk5IHRvIDIwMDg/IFVzZSB0aGUgYmFzZSBwbG90dGluZyBzeXN0ZW0gdG8gbWFrZSBhIHBsb3QgYW5zd2VyaW5nIHRoaXMgcXVlc3Rpb24uDQpgYGB7cn0NCmBgYA0KDQojIFF1ZXN0aW9uIDMNCg0KT2YgdGhlIGZvdXIgdHlwZXMgb2Ygc291cmNlcyBpbmRpY2F0ZWQgYnkgdGhlIHR5cGUgKHBvaW50LCBub25wb2ludCwgb25yb2FkLCBub25yb2FkKSB2YXJpYWJsZSwgd2hpY2ggb2YgdGhlc2UgZm91ciBzb3VyY2VzIGhhdmUgc2VlbiBkZWNyZWFzZXMgaW4gZW1pc3Npb25zIGZyb20gMTk5OSAtIDIwMDggZm9yIEJhbHRpbW9yZSBDaXR5PyBXaGljaCBoYXZlIHNlZW4gaW5jcmVhc2VzIGluIGVtaXNzaW9ucyBmcm9tIDE5OTkgLSAyMDA4PyBVc2UgdGhlIGdncGxvdDIgcGxvdHRpbmcgc3lzdGVtIHRvIG1ha2UgYSBwbG90IGFuc3dlciB0aGlzIHF1ZXN0aW9uLg0KYGBge3J9DQpgYGANCg0KIyBRdWVzdGlvbiA0DQoNCkFjcm9zcyB0aGUgVW5pdGVkIFN0YXRlcywgaG93IGhhdmUgZW1pc3Npb25zIGZyb20gY29hbCBjb21idXN0aW9uLXJlbGF0ZWQgc291cmNlcyBjaGFuZ2VkIGZyb20gMTk5OSAtIDIwMDg/DQpgYGB7cn0NCmBgYA0KDQojIFF1ZXN0aW9uIDUNCg0KSG93IGhhdmUgZW1pc3Npb25zIGZyb20gbW90b3IgdmVoaWNsZSBzb3VyY2VzIGNoYW5nZWQgZnJvbSAxOTk5IC0gMjAwOCBpbiBCYWx0aW1vcmUgQ2l0eT8NCmBgYHtyfQ0KYGBgDQoNCiMgUXVlc3Rpb24gNg0KDQpDb21wYXJlIGVtaXNzaW9ucyBmcm9tIG1vdG9yIHZlaGljbGUgc291cmNlcyBpbiBCYWx0aW1vcmUgQ2l0eSB3aXRoIGVtaXNzaW9ucyBmcm9tIG1vdG9yIHZlaGljbGUgc291cmNlcyBpbiBMb3MgQW5nZWxlcyBDb3VudHksIENhbGlmb3JuaWEgZmlwcyA9PSAiMDYwMzciLiBXaGljaCBjaXR5IGhhcyBzZWVuIGdyZWF0ZXIgY2hhbmdlcyBvdmVyIHRpbWUgaW4gbW90b3IgdmVoaWNsZSBlbWlzc2lvbnM/DQpgYGB7cn0NCmBgYA0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb2plY3QgMiBub3RlYm9vayINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiMgTG9hZCBwYWNrYWdlcw0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2dwbG90MikNCmBgYA0KDQojIFJlYWQgaW4gRGF0YSAodGFrZXMgdGltZSkNCmBgYHtyfQ0KTkVJIDwtIHJlYWRSRFMoInN1bW1hcnlTQ0NfUE0yNS5yZHMiKQ0KU0NDIDwtIHJlYWRSRFMoIlNvdXJjZV9DbGFzc2lmaWNhdGlvbl9Db2RlLnJkcyIpDQoNCiMgTkVJIHllYXIgc3RvcmVkIGFzIGludC4gV2UnbGwgc2V0IHRvIGZhY3RvcnMNCk5FSSR5ZWFyIDwtIGFzLmZhY3RvcihORUkkeWVhcikNCg0KYGBgDQojIFF1ZXN0aW9uIDENCg0KSGF2ZSB0b3RhbCBlbWlzc2lvbnMgZnJvbSBQTTIuNSBkZWNyZWFzZWQgaW4gdGhlIFVuaXRlZCBTdGF0ZXMgZnJvbSAxOTk5IHRvIDIwMDg/IFVzaW5nIHRoZSBiYXNlIHBsb3R0aW5nIHN5c3RlbSwgbWFrZSBhIHBsb3Qgc2hvd2luZyB0aGUgdG90YWwgUE0yLjUgZW1pc3Npb24gZnJvbSBhbGwgc291cmNlcyBmb3IgZWFjaCBvZiB0aGUgeWVhcnMgMTk5OSwgMjAwMiwgMjAwNSwgYW5kIDIwMDguDQpgYGB7cn0NCiMgUGxvdDEuUg0KdG90YWxzIDwtIE5FSSAlPiUNCiAgZ3JvdXBfYnkoeWVhcikgJT4lDQogIHN1bW1hcmlzZShUb3RhbCA9IHN1bShFbWlzc2lvbnMsIG5hLnJtPVRSVUUpLzFlNikNCg0KcG5nKGZpbGVuYW1lID0gInBsb3QxLnBuZyIsIHdpZHRoID0gNDgwLCBoZWlnaHQgPSA0ODApICMgcG5nIGRldmljZSBmb3IgcGxvdHRpbmcNCg0KYmFycGxvdCh0b3RhbHMkVG90YWwsIG5hbWVzLmFyZyA9IHRvdGFscyR5ZWFyLA0KICAgICAgICBjb2wgPSAiI2ZhOWZiNSIsDQogICAgICAgIG1haW4gPSAiVG90YWwgUE0yLjUgRW1pc3Npb25zXG4gaW4gVW5pdGVkIFN0YXRlcyIsDQogICAgICAgIHlsYWIgPSAiQW1vdW50ICgxMF42IHRvbnMpIikNCg0KZGV2Lm9mZigpICMgY2xvc2UgZGV2aWNlDQpgYGANCg0KIyBRdWVzdGlvbiAyDQoNCkhhdmUgdG90YWwgZW1pc3Npb25zIGZyb20gUE0yLjUgZGVjcmVhc2VkIGluIHRoZSBCYWx0aW1vcmUgQ2l0eSwgTWFyeWxhbmQgZmlwcyA9PSAiMjQ1MTAiIGZyb20gMTk5OSB0byAyMDA4PyBVc2UgdGhlIGJhc2UgcGxvdHRpbmcgc3lzdGVtIHRvIG1ha2UgYSBwbG90IGFuc3dlcmluZyB0aGlzIHF1ZXN0aW9uLg0KYGBge3J9DQpgYGANCg0KIyBRdWVzdGlvbiAzDQoNCk9mIHRoZSBmb3VyIHR5cGVzIG9mIHNvdXJjZXMgaW5kaWNhdGVkIGJ5IHRoZSB0eXBlIChwb2ludCwgbm9ucG9pbnQsIG9ucm9hZCwgbm9ucm9hZCkgdmFyaWFibGUsIHdoaWNoIG9mIHRoZXNlIGZvdXIgc291cmNlcyBoYXZlIHNlZW4gZGVjcmVhc2VzIGluIGVtaXNzaW9ucyBmcm9tIDE5OTkgLSAyMDA4IGZvciBCYWx0aW1vcmUgQ2l0eT8gV2hpY2ggaGF2ZSBzZWVuIGluY3JlYXNlcyBpbiBlbWlzc2lvbnMgZnJvbSAxOTk5IC0gMjAwOD8gVXNlIHRoZSBnZ3Bsb3QyIHBsb3R0aW5nIHN5c3RlbSB0byBtYWtlIGEgcGxvdCBhbnN3ZXIgdGhpcyBxdWVzdGlvbi4NCmBgYHtyfQ0KYGBgDQoNCiMgUXVlc3Rpb24gNA0KDQpBY3Jvc3MgdGhlIFVuaXRlZCBTdGF0ZXMsIGhvdyBoYXZlIGVtaXNzaW9ucyBmcm9tIGNvYWwgY29tYnVzdGlvbi1yZWxhdGVkIHNvdXJjZXMgY2hhbmdlZCBmcm9tIDE5OTkgLSAyMDA4Pw0KYGBge3J9DQpgYGANCg0KIyBRdWVzdGlvbiA1DQoNCkhvdyBoYXZlIGVtaXNzaW9ucyBmcm9tIG1vdG9yIHZlaGljbGUgc291cmNlcyBjaGFuZ2VkIGZyb20gMTk5OSAtIDIwMDggaW4gQmFsdGltb3JlIENpdHk/DQpgYGB7cn0NCmBgYA0KDQojIFF1ZXN0aW9uIDYNCg0KQ29tcGFyZSBlbWlzc2lvbnMgZnJvbSBtb3RvciB2ZWhpY2xlIHNvdXJjZXMgaW4gQmFsdGltb3JlIENpdHkgd2l0aCBlbWlzc2lvbnMgZnJvbSBtb3RvciB2ZWhpY2xlIHNvdXJjZXMgaW4gTG9zIEFuZ2VsZXMgQ291bnR5LCBDYWxpZm9ybmlhIGZpcHMgPT0gIjA2MDM3Ii4gV2hpY2ggY2l0eSBoYXMgc2VlbiBncmVhdGVyIGNoYW5nZXMgb3ZlciB0aW1lIGluIG1vdG9yIHZlaGljbGUgZW1pc3Npb25zPw0KYGBge3J9DQpgYGANCg==</div>
 
 
 
