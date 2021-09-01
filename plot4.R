@@ -3,6 +3,7 @@ plot4 <- function(){
   library(tidyverse)
   
   NEI <- readRDS("summarySCC_PM25.rds")
+  SCC <- readRDS("Source_Classification_Code.rds")
   
   # NEI year stored as int. We'll set to factors
   NEI$year <- as.factor(NEI$year)
