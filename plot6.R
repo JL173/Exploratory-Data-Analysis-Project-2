@@ -1,4 +1,4 @@
-plot5 <- function(){
+plot6 <- function(){
   
   library(tidyverse)
   
@@ -8,7 +8,7 @@ plot5 <- function(){
   # NEI year stored as int. We'll set to factors
   NEI$year <- as.factor(NEI$year)
   
-  # Plot5.R
+  # Plot6.R
   
   # We need all "Vehicle" entries from SCC, though
   # these are split across multiple columns
@@ -24,21 +24,25 @@ plot5 <- function(){
     select(SCC)
   
   # Baltimore City, Maryland: fips = 24510
-  bc_m_veh <- NEI %>%
-    filter(fips == "24510") %>%
+  # Los Angeles County, California fips == "06037"
+  
+  cities_m_veh <- NEI %>%
+    filter(fips %in% c("24510", "06037")) %>%
     filter(SCC %in% veh_scc$SCC) %>%
-    group_by(year) %>%
+    group_by(fips, year) %>%
     summarise(Total = sum(Emissions, na.rm=TRUE))
   
   # png device for plotting
-  png(filename = "plot5.png", width = 480, height = 480)
+  png(filename = "plot6.png", width = 480, height = 480)
   
-  ggplot(bc_m_veh, aes(x = year, y = Total, fill = "#005F6A")) +
+  ggplot(cities_m_veh, aes(x = year, y = Total, fill = fips)) +
+    scale_y_log10() +
     geom_col(position = "dodge", colour = "black") +
-    scale_fill_manual(values = "#005F6A") +
     ylab("Total (tons)") + xlab(NULL) +
-    ggtitle("Total PM2.5 Emissions in Baltimore City, Maryland\nfrom Motor Vehicle Sources") + 
-    theme(legend.position="none")
+    ggtitle("Total PM2.5 Emissions from Motor Vehicle Sources") + 
+    scale_fill_discrete(name = "City",
+                        labels = c("Baltimore City,\nMaryland",
+                                   "Los Angeles County,\nCalifornia"))
   
   dev.off() # close device
 }
