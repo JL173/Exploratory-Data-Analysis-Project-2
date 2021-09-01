@@ -1,6 +1,7 @@
 plot3 <- function(){
   
   library(tidyverse)
+  library(ggplot2)
   
   NEI <- readRDS("summarySCC_PM25.rds")
   
