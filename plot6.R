@@ -42,8 +42,8 @@ plot6 <- function(){
     ylab("Total (tons)") + xlab(NULL) +
     ggtitle("Total PM2.5 Emissions from Motor Vehicle Sources") + 
     scale_fill_discrete(name = "City",
-                        labels = c("Baltimore City,\nMaryland",
-                                   "Los Angeles County,\nCalifornia"))
+                        labels = c("Los Angeles County,\nCalifornia",
+                                   "Baltimore City,\nMaryland"))
   
   dev.off() # close device
 }

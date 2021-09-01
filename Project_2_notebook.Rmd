@@ -196,7 +196,7 @@ ggplot(cities_m_veh, aes(x = year, y = Total, fill = fips)) +
   ylab("Total (tons)") + xlab(NULL) +
   ggtitle("Total PM2.5 Emissions from Motor Vehicle Sources") + 
   scale_fill_discrete(name = "City",
-                      labels = c("Baltimore City,\nMaryland", "Los Angeles County,\nCalifornia"))
+                        labels = c("Los Angeles County,\nCalifornia","Baltimore City,\nMaryland"))
 
 dev.off() # close device
 ```
